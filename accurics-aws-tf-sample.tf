@@ -251,19 +251,3 @@ resource "aws_codecommit_repository" "accurics-test-ccrepo1" {
   }
 }
 
-#Elastic Beanstalk App
-resource "aws_elastic_beanstalk_application" "accurics-test-elasticbeanstalkapp1" {
-  name        = "accurics-test-elasticbeanstalkapp1"
-  description = "accurics-test-elasticbeanstalkapp1"
-
-  appversion_lifecycle {
-    service_role          = aws_iam_role.accurics-test-iamrole1.arn
-    max_count             = 128
-    delete_source_from_s3 = true
-  }
-  tags = {
-    # Name = format("%s-elasticbeanstalkapp1", var.acqaPrefix) - This is reserved
-    ACQAResource = "true"
-    Owner = "Accurics"
-  }
-}
