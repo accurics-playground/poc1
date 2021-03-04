@@ -1,7 +1,7 @@
 provider "aws" {
   access_key = "AKIARWXIFOVSRLGCGYSV" //nitish@accurics.com
   secret_key = "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"
-  region = "us-west-2" //Canada
+  region = "us-east-2"
 }
 
 # Create a VPC to launch our instances into
