@@ -132,59 +132,6 @@ resource "aws_s3_bucket" "accurics-test-s3bucket1" {
   }
 }
 
-# Create IAM role for lamda
-resource "aws_iam_role" "accurics-test-iamrole1" {
-  name = "accurics-test-iamrole1"
-  tags = {
-    Name = format("%s-iamrole1", var.acqaPrefix)
-    ACQAResource = "true"
-    Owner = "Accurics"
-  }
-
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "lambda.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-EOF
-}
-
-# Create lambda function
-resource "aws_lambda_function" "accurics-test-lambda1" {
-  tags = {
-    Name = format("%s-lamda1", var.acqaPrefix)
-    ACQAResource = "true"
-    Owner = "Accurics"
-  }
-
-  filename      = "accurics-test-lambda1.zip"
-  function_name = "accurics-test-lambda1"
-  role          = aws_iam_role.accurics-test-iamrole1.arn
-  handler       = "exports.test"
-
-  # The filebase64sha256() function is available in Terraform 0.11.12 and later
-  # For Terraform 0.11.11 and earlier, use the base64sha256() function and the file() function:
-  # source_code_hash = "${base64sha256(file("lambda_function_payload.zip"))}"
-  source_code_hash = filebase64sha256("accurics-test-lambda1.zip")
-
-  runtime = "nodejs12.x"
-
-  environment {
-    variables = {
-      foo = "bar"
-    }
-  }
-}
-
 # Cloudwatch log group and stream
 resource "aws_cloudwatch_log_group" "accurics-test-cwlg1" {
   name = "accurics-test-cwlg1"
@@ -232,7 +179,7 @@ resource "aws_kms_key" "accurics-test-kmskey1" {
 
 # ebs volume
 resource "aws_ebs_volume" "accurics-test-ebsvolume1" {
-  availability_zone = "us-west-2a"
+  availability_zone = "us-west-2b"
   size              = 25
   encrypted         = false
   tags = {
