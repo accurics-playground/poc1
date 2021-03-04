@@ -1,6 +1,6 @@
 variable "acqaPrefix" {
     type = string
-    default = "acqa-test"
+    default = "accurics-test"
 }
 
 # Commenting validation as BAT is using TF .12 and it is TF13 feature
