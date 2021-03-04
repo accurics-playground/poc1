@@ -232,7 +232,7 @@ resource "aws_kms_key" "accurics-test-kmskey1" {
 
 # ebs volume
 resource "aws_ebs_volume" "accurics-test-ebsvolume1" {
-  availability_zone = "ca-central-1a"
+  availability_zone = "us-west-2a"
   size              = 25
   encrypted         = false
   tags = {
