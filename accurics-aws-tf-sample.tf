@@ -177,17 +177,17 @@ resource "aws_kms_key" "accurics-test-kmskey1" {
   }
 }
 
-# ebs volume
-resource "aws_ebs_volume" "accurics-test-ebsvolume1" {
-  availability_zone = "us-west-2b"
-  size              = 25
-  encrypted         = false
-  tags = {
-    Name = format("%s-ebsvolume1", var.acqaPrefix)
-    ACQAResource = "true"
-    Owner = "Accurics"
-  }
-}
+# # ebs volume
+# resource "aws_ebs_volume" "accurics-test-ebsvolume1" {
+#   availability_zone = "us-west-2b"
+#   size              = 25
+#   encrypted         = false
+#   tags = {
+#     Name = format("%s-ebsvolume1", var.acqaPrefix)
+#     ACQAResource = "true"
+#     Owner = "Accurics"
+#   }
+# }
 
 # EIP
 resource "aws_eip" "accurics-test-eip1" {
@@ -201,22 +201,22 @@ resource "aws_eip" "accurics-test-eip1" {
   }
 }
 
-# ec2
-resource "aws_instance" "accurics-test-instance1" {
-  ami           = data.aws_ami.accurics-test-instance1-ami.id
-  instance_type = "t2.micro"
+# # ec2
+# resource "aws_instance" "accurics-test-instance1" {
+#   ami           = data.aws_ami.accurics-test-instance1-ami.id
+#   instance_type = "t2.micro"
 
-   network_interface {
-    network_interface_id = aws_network_interface.accurics-test-networkinterface1.id
-    device_index         = 0
-  } 
+#    network_interface {
+#     network_interface_id = aws_network_interface.accurics-test-networkinterface1.id
+#     device_index         = 0
+#   } 
 
-  tags = {
-    Name = format("%s-instance1", var.acqaPrefix)
-    ACQAResource = "true"
-    Owner = "Accurics"
-  }
-}
+#   tags = {
+#     Name = format("%s-instance1", var.acqaPrefix)
+#     ACQAResource = "true"
+#     Owner = "Accurics"
+#   }
+# }
 
 # Start -------------- Dynamodb table
 resource "aws_dynamodb_table" "accurics-test-dynamodbtable1" {
