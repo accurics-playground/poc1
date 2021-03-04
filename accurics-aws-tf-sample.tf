@@ -1,5 +1,5 @@
 provider "aws" {
-  access_key = "AKIARWXIFOVSRLGCGYSV" //nitish@accurics.com
+  access_key = "AKIARWXIFOVSRLGCGYSV"
   secret_key = "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"
   region = "us-east-2"
 }
