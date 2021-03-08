@@ -110,7 +110,7 @@ resource "aws_network_interface" "accurics-test-networkinterface1" {
 data "aws_canonical_user_id" "current_user" {}
 
 # Create S3 bucket
-resource "aws_s3_bucket" "poc1-test-s3bucket1" {
+resource "aws_s3_bucket" "envision-digital-test-s3bucket1" {
   bucket = "poc1-test-s3bucket1"
 
   grant {
